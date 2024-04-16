@@ -17,6 +17,7 @@ package consoleErrorBudgetBurn
 import (
 	"fmt"
 
+	"github.com/clcollins/errorBudgetBurn-investigator/pkg/common"
 	"k8s.io/client-go/dynamic"
 )
 
@@ -27,6 +28,11 @@ func Run(kubeClient *dynamic.DynamicClient, verbose bool) error {
 func consoleErrorBudgetBurn(kubeClient *dynamic.DynamicClient, verbose bool) error {
 	if verbose {
 		fmt.Println("Investigating console-errorBudgetBurn")
+	}
+
+	err := common.CheckDefaultIngress(kubeClient, verbose)
+	if err != nil {
+		return err
 	}
 
 	return nil
