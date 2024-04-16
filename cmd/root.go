@@ -83,7 +83,11 @@ func init() {
 	rootCmd.MarkFlagsMutuallyExclusive("console", "api")
 	rootCmd.MarkFlagsOneRequired("console", "api")
 
-	viper.BindPFlags(rootCmd.Flags())
+	err := viper.BindPFlags(rootCmd.Flags())
+	if err != nil {
+		fmt.Print(err)
+		os.Exit(1)
+	}
 }
 
 // newKubeDynamicClient builds a kube client for the currently logged-in cluster
