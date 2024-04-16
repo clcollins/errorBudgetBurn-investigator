@@ -14,8 +14,8 @@ GORELEASER_SINGLE_TARGET ?= true
 
 default: all
 
-.PHONY: vet mod fmt lint test build
-all: vet mod fmt lint test build
+.PHONY: license vet mod fmt lint test build
+all: license vet mod fmt lint test build
 
 vet:
 	go vet ${BUILDFLAGS} ./... 
@@ -46,4 +46,4 @@ build:
 # `make install-license` or `make install-tools` to install
 .PHONY: license 
 license: 
-	@addlicense -c "Red Hat, Inc."  -l apache -v -y 2021-2024 .*go **/*.go **/**/*.go
+	@addlicense -c "Red Hat, Inc."  -l apache -v -y 2021-2024 *.go **/*.go **/**/*.go
