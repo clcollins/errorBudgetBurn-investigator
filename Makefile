@@ -12,6 +12,9 @@ GOBUILDFLAGS=-gcflags="all=-trimpath=${GOPATH}" -asmflags="all=-trimpath=${GOPAT
 
 GORELEASER_SINGLE_TARGET ?= true
 
+.DEFAULT_GOAL = all
+
+.PHONY: default
 default: all
 
 .PHONY: license vet mod fmt lint test build
