@@ -22,13 +22,16 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
+	"github.com/clcollins/errorBudgetBurn-investigator/pkg/apiErrorBudgetBurn"
+	"github.com/clcollins/errorBudgetBurn-investigator/pkg/consoleErrorBudgetBurn"
+
 	"k8s.io/client-go/dynamic"
 	"k8s.io/client-go/tools/clientcmd"
 )
 
 var supportedAlerts = map[string]func(*dynamic.DynamicClient, bool) error{
-	"console": consoleErrorBudgetBurn,
-	"api":     apiErrorBudgetBurn,
+	"console": consoleErrorBudgetBurn.Run,
+	"api":     apiErrorBudgetBurn.Run,
 }
 
 // rootCmd represents the base command when called without any subcommands
@@ -106,20 +109,4 @@ func newKubeDynamicClient() (*dynamic.DynamicClient, error) {
 	}
 
 	return kubeClient, nil
-}
-
-func consoleErrorBudgetBurn(kubeClient *dynamic.DynamicClient, verbose bool) error {
-	if verbose {
-		fmt.Println("Investigating console-errorBudgetBurn")
-	}
-
-	return nil
-}
-
-func apiErrorBudgetBurn(kubeClient *dynamic.DynamicClient, verbose bool) error {
-	if verbose {
-		fmt.Println("Investigating api-errorBudgetBurn")
-	}
-
-	return nil
 }
