@@ -49,7 +49,7 @@ A tool for investigating various errorBudgetBurn alerts received by SREs, includ
 
 		kubeClient, err := newKubeDynamicClient()
 		if err != nil {
-			fmt.Print(err)
+			fmt.Println(err)
 			return
 		}
 
@@ -85,7 +85,7 @@ func init() {
 
 	err := viper.BindPFlags(rootCmd.Flags())
 	if err != nil {
-		fmt.Print(err)
+		fmt.Println(err)
 		os.Exit(1)
 	}
 }
